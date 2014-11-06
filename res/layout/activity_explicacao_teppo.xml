@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="com.example.treinocenario.MainActivity$PlaceholderFragment" >
+
+    <TextView
+        android:id="@+id/titulo_explica_teppo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:text="@string/titulo_explicacao_teppo"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <TextView
+        android:id="@+id/explicacao_teppo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/layout_botao_e_checkbox_nao_aparecer_mais"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_centerHorizontal="true"
+        android:gravity="center"
+        android:text="@string/explicacao_teppo"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <LinearLayout
+        android:id="@+id/layout_botao_e_checkbox_nao_aparecer_mais"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_gravity="center_vertical"
+        android:layout_alignParentBottom="true" >
+		
+        <Button
+            android:id="@+id/checkbox_mostrar_regras_treinamento"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:background="@drawable/checkbox_desmarcada_regras_treinamento"
+            android:minHeight="0dp"
+			android:minWidth="0dp"
+			android:layout_marginBottom="5dp"
+            android:onClick="mudarValorMostrarRegrasTreinamento" />
+
+        <TextView
+            android:id="@+id/texto_mostrar_regras_treinamento"
+            android:layout_width="0px"
+            android:layout_height="wrap_content"
+            android:layout_weight="3"
+            android:layout_gravity="center_vertical"
+            android:text="@string/mostrar_regras_treinamento"
+            android:textSize="17sp" />
+
+    	<Button
+        	android:id="@+id/botao_quero_jogar_teppo"
+        	android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+        	android:layout_gravity="center_vertical"
+        	android:background="@drawable/red_button"
+        	android:textColor="#FFFFFF"
+        	android:text="@string/botao_jogar_teppo"
+        	android:onClick="irParaSelecionarCategoriasTeppo" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/titulo_explica_teppo"
+        android:layout_centerHorizontal="true"
+        android:text="@string/titulo_explicacao_teppo_japones"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+    
+</RelativeLayout>

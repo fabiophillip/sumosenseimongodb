@@ -1,0 +1,236 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:background="@drawable/sumoarenasingle0"
+    tools:context="com.example.treinocenario.MainActivity$PlaceholderFragment" >
+
+    <Button
+        android:id="@+id/botao_voltar_menu"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_marginTop="5dp"
+        android:textColor="#FFFFFF"
+        android:background="@drawable/botoes_menu_do_teppo"
+        android:onClick="voltarAoMenuPrincipal"
+        android:text="@string/botao_menu_rincipal" />
+    
+    <Button
+        android:id="@+id/botao_jogar_de_novo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="5dp"
+        android:textColor="#FFFFFF"
+        android:background="@drawable/botoes_menu_do_teppo"
+        android:onClick="jogarNovamente"
+        android:text="@string/botao_jogar_novamente" />
+
+    
+
+    <ImageView
+        android:id="@+id/iconeMoedaDoJogo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:src="@drawable/simbolo_japan_points" />
+
+    <TextView
+        android:id="@+id/texto_moeda_ganha_no_jogo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/iconeMoedaDoJogo"
+        android:layout_alignTop="@+id/iconeMoedaDoJogo"
+        android:layout_toLeftOf="@+id/iconeMoedaDoJogo"
+        android:gravity="center"
+        android:text="3000x"
+        android:textSize="40sp"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <ImageView
+        android:id="@+id/sensei"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/texto_moeda_ganha_no_jogo"
+        android:src="@drawable/senseiteppocortado" />
+
+    <RelativeLayout
+        android:id="@+id/balaoResultadosTeppo"
+        android:layout_width="wrap_content"
+        android:layout_height="450dp"
+        android:layout_below="@+id/iconeMoedaDoJogo"
+        android:layout_marginLeft="-30dp"
+        android:layout_marginTop="60dp"
+        android:layout_toRightOf="@+id/sensei"
+        android:background="@drawable/balao_resultados_teppo" >
+        
+       <!--   <ScrollView 
+    	android:id="@+id/ScrollViewComponentesBalaoTeppo"
+    	android:layout_width="fill_parent"
+    	android:layout_height="fill_parent"
+    	android:layout_marginTop="30dp"
+        android:layout_marginBottom="50dp"
+        android:layout_marginLeft="50dp" > -->
+
+        	<RelativeLayout
+        	    android:id="@+id/campo_componentes_balao_teppo"
+        	    android:layout_width="fill_parent"
+    			android:layout_height="450dp"
+    			android:layout_marginTop="30dp"
+        		android:layout_marginBottom="50dp"
+        		android:layout_marginLeft="50dp">
+        	    
+        	    <RelativeLayout
+        			android:id="@+id/nihonball_e_text_final"
+        			android:layout_width="wrap_content"
+        			android:layout_height="wrap_content"
+        			 >
+
+    			<ImageView
+        			android:id="@+id/fundo_texto_Vitoria"
+        			android:layout_width="wrap_content"
+        			android:layout_height="wrap_content"
+        			android:layout_alignParentLeft="true"
+        			android:layout_alignParentRight="true"
+        			android:src="@drawable/nihonball" />
+
+    			<TextView
+        			android:id="@+id/texto_vitoria_treino"
+        			android:layout_width="wrap_content"
+        			android:layout_height="wrap_content"
+        			android:layout_alignLeft="@+id/fundo_texto_Vitoria"
+        			android:layout_alignTop="@+id/fundo_texto_Vitoria"
+        			android:layout_alignRight="@+id/fundo_texto_Vitoria"
+        			android:layout_alignBottom="@+id/fundo_texto_Vitoria"
+        			android:gravity="center"
+        			android:text="21 acertos! Você é massa!"
+        			android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    			<RelativeLayout android:id="@+id/campo_palavras_erradas"
+    			    android:layout_width="wrap_content"
+    			    android:layout_height="wrap_content"
+    			    android:layout_alignParentLeft="true"
+    			    android:layout_alignParentRight="true"
+    			    android:layout_below="@+id/texto_vitoria_treino"
+    			     >
+    			<TextView
+    			    android:id="@+id/label_palavras_erradas"
+    			    android:layout_width="wrap_content"
+    			    android:layout_height="wrap_content"
+    			    android:layout_alignParentLeft="true"
+    			    android:layout_alignParentRight="true"
+    			    android:layout_marginTop="10dp"
+    			    android:gravity="center"
+    			    android:text="@string/label_palavras_erradas"
+    			    android:textAppearance="?android:attr/textAppearanceLarge" />
+    			
+    			 <LinearLayout
+    			     android:id="@+id/cabecalho_tabela_palavras_erradas"
+    			     android:layout_width="wrap_content"
+    			     android:layout_height="wrap_content"
+    			     android:layout_alignParentRight="true"
+    			     android:layout_alignParentLeft="true"
+    			     android:layout_below="@+id/label_palavras_erradas"
+    			     android:layout_marginTop="5dp"
+    			     android:layout_marginBottom="10dp"
+    			     android:layout_marginRight="5dp"
+    			     android:orientation="horizontal" >
+    	
+         		<TextView
+    		    		android:id="@+id/label_kanji_errado"
+    		    		android:layout_width="0px"
+    		    		android:layout_weight="2"
+    		    		android:layout_height="wrap_content"
+    		    		android:gravity="center"
+    		    		android:layout_gravity="center"
+    		    		android:text="@string/label_kanji"
+    		    		android:textSize="20sp"
+    		    		android:textStyle="bold"  />
+    			<TextView
+    		    		android:id="@+id/label_hiragana_errado"
+    		    		android:layout_width="0px"
+    		   			android:layout_weight="2"
+    		    		android:layout_height="wrap_content"
+    		    		android:gravity="center"
+    		    		android:layout_gravity="center"
+    		    		android:text="@string/label_hiragana"
+    		    		android:textSize="20sp"
+    		    		android:textStyle="bold"/>
+
+    			<TextView
+    		    		android:id="@+id/label_traducao_errada"
+    		    		android:layout_width="0px"
+    		    		android:layout_weight="2"
+    		    		android:layout_height="wrap_content"
+    		    		android:layout_gravity="center"
+    		    		android:gravity="center"
+    		    		android:text="@string/label_traducao"
+    		    		android:textSize="20sp"
+    		    		android:textStyle="bold"/>
+    			<TextView
+    		    		android:id="@+id/label_quantos_erros"
+    		    		android:layout_width="0px"
+    		    		android:layout_weight="1"
+    		    		android:layout_height="wrap_content"
+    		    		android:layout_gravity="center"
+    		    		android:gravity="center"
+    		    		android:text="@string/label_quantos_erros"
+    		    		android:textSize="20sp"
+    		    		android:textStyle="bold"/>
+    		
+    			
+
+   				</LinearLayout>
+    			
+    			
+    			<ListView android:id="@+id/lista_palavras_erradas"
+    			    android:layout_width="wrap_content"
+        			android:layout_height="250dp"
+        			android:layout_below="@+id/cabecalho_tabela_palavras_erradas"
+        			android:scrollbarAlwaysDrawVerticalTrack="true"
+        			android:scrollbars="vertical"
+        			android:layout_marginRight="5dp">
+        		</ListView>
+        		
+    			
+    			
+        		</RelativeLayout>
+        		
+    			<!-- substituto caso o jogador não erre nada -->
+        	
+        		<TextView
+        		    android:id="@+id/texto_errou_nada"
+        		    android:layout_width="wrap_content"
+        		    android:layout_height="wrap_content"
+        		    android:layout_alignParentBottom="true"
+        		    android:layout_alignParentLeft="true"
+        		    android:layout_alignParentRight="true"
+        		    android:layout_below="@+id/texto_vitoria_treino"
+        		    android:layout_gravity="center"
+        		    android:gravity="center"
+        		    android:text="@string/label_errou_nada"
+        		    android:textSize="40sp" >
+
+        		</TextView>
+    			    
+
+    			</RelativeLayout>
+        
+        	</RelativeLayout>
+        	
+        	
+        	
+         <!-- </ScrollView> -->
+    </RelativeLayout>
+
+</RelativeLayout>
+

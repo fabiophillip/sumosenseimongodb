@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.phiworks.sumosenseinew"
+    android:versionCode="1"
+    android:versionName="1.0" >
+
+    <uses-sdk
+        android:minSdkVersion="11"
+        android:targetSdkVersion="19" />
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.GET_TASKS" />
+    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
+    
+    <supports-screens android:smallScreens="false"
+                      android:normalScreens="false"
+                      android:largeScreens="true"
+                      android:xlargeScreens="true"/>
+
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/ic_launcher"
+        android:label="@string/app_name"
+        android:theme="@style/AppTheme" >
+        <meta-data
+            android:name="com.google.android.gms.games.APP_ID"
+            android:value="@string/app_id" />
+        <meta-data
+            android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version" />
+
+        <activity
+            android:name=".MainActivity"
+            android:label="@string/app_name"
+            android:screenOrientation="portrait" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".EscolhaNivelActivity"
+            android:label="@string/title_activity_escolha_nivel"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name=".TelaInicialMultiplayer"
+            android:label="@string/title_activity_login"
+            android:screenOrientation="portrait" >
+        </activity>
+
+        <service
+            android:name=".BackgroundSoundService"
+            android:enabled="true" >
+        </service>
+
+        <activity
+            android:name=".LojinhaMaceteKanjiActivity"
+            android:label="@string/title_activity_lojinha_macete_kanji" >
+        </activity>
+        <activity
+            android:name=".VerMaceteKanjiActivity"
+            android:label="@string/title_activity_ver_macete_kanji" >
+        </activity>
+        <activity
+            android:name=".DadosPartidasAnteriores"
+            android:label="@string/title_activity_dados_partidas_anteriores" >
+        </activity>
+        <activity
+            android:name=".MostrarDadosUmaPartida"
+            android:label="@string/title_activity_mostrar_dados_uma_partida" >
+        </activity>
+        <activity
+            android:name=".ExplicacaoTeppo"
+            android:label="@string/title_activity_explicacao_teppo" >
+        </activity>
+        <activity
+            android:name=".TreinoTeppo"
+            android:label="@string/title_activity_treino_teppo" >
+        </activity>
+        <activity
+            android:name=".FimDeTreino"
+            android:label="@string/title_activity_fim_de_treino" >
+        </activity>
+        <activity
+            android:name=".TelaModoCasual"
+            android:label="@string/title_activity_tela_modo_casual" >
+        </activity>
+        <activity
+            android:name=".Configuracoes"
+            android:label="@string/title_activity_configuracoes" >
+        </activity>
+    </application>
+
+</manifest>

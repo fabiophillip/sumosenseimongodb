@@ -6,6 +6,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
+import java.util.List;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
@@ -16,6 +17,13 @@ import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicNameValuePair;
+import org.bson.types.ObjectId;
+
+import com.mongodb.BasicDBObject;
+import com.mongodb.DB;
+import com.mongodb.DBCollection;
+import com.mongodb.DBCursor;
+import com.mongodb.MongoClient;
 
 
 import android.os.AsyncTask;
@@ -33,56 +41,42 @@ public class DesativarSalaEscolhidaDoBdTask extends AsyncTask<String, String, Vo
 	{
 		String url_select = "http://server.sumosensei.pairg.dimap.ufrn.br/app/desativarsalaporid.php";
 		ArrayList<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
-		String idSala = arg0[0];
-		nameValuePairs.add(new BasicNameValuePair("id_da_sala", idSala));
-		try {
-            // Set up HTTP post
-
-            // HttpClient is more then less deprecated. Need to change to URLConnection
-            HttpClient httpClient = new DefaultHttpClient();
-
-            HttpPost httpPost = new HttpPost(url_select);
-            
-            httpPost.setEntity(new UrlEncodedFormEntity(nameValuePairs,"UTF-8"));
-            HttpResponse httpResponse = httpClient.execute(httpPost);
-            HttpEntity httpEntity = httpResponse.getEntity();
-
-            // Read content & Log
-            inputStream = httpEntity.getContent();
-        } catch (UnsupportedEncodingException e1) {
-            Log.e("UnsupportedEncodingException", e1.toString());
-            e1.printStackTrace();
-        } catch (ClientProtocolException e2) {
-            Log.e("ClientProtocolException", e2.toString());
-            e2.printStackTrace();
-        } catch (IllegalStateException e3) {
-            Log.e("IllegalStateException", e3.toString());
-            e3.printStackTrace();
-        } catch (IOException e4) {
+		String emailDoCriador = arg0[0];
+		
+		try
+		{
+			MongoClient mongo = new MongoClient("10.5.29.51", 27017);
+			DB db = mongo.getDB("pairg_sumosensei_app");
+			DBCollection collection = db.getCollection("salasmodocasual");
+			BasicDBObject searchByEmailCriador = new BasicDBObject("emaildocriador", emailDoCriador );
+			DBCursor cursor = collection.find(searchByEmailCriador);
+			
+			while(cursor.hasNext())
+			{
+				BasicDBObject objetoDB = (BasicDBObject) cursor.next();
+				String salaaberta = (String) objetoDB.get("salaaberta");
+				String emailCriador = (String) objetoDB.get("emaildocriador");
+				String danCriador = (String) objetoDB.get("dandocriador");
+				List<String> categoriasList = (List<String>) objetoDB.get("categorias");
+				
+				if(salaaberta.compareTo("sim") == 0)
+				{
+					//encontramos a sala aberta criada agora pouco
+					BasicDBObject novoObjetoDB = new BasicDBObject();
+					novoObjetoDB.put("salaaberta","não");
+					novoObjetoDB.append("emaildocriador", emailCriador);
+					novoObjetoDB.append("dandocriador", danCriador);
+					novoObjetoDB.append("categorias", categoriasList);
+					collection.update(objetoDB,novoObjetoDB);
+					
+				}
+			}
+		}
+		catch (IOException e4) {
             Log.e("IOException", e4.toString());
             e4.printStackTrace();
         }
-        // Convert response to string using String Builder
-        try {
-            BufferedReader bReader = new BufferedReader(new InputStreamReader(inputStream, "UTF-8"));
-            StringBuilder sBuilder = new StringBuilder();
-
-            String line = null;
-            while ((line = bReader.readLine()) != null) {
-            	if(line.startsWith("<meta") == false)//pula linha de metadados
-            	{
-            		 sBuilder.append(line + "\n");
-            	}
-               
-            }
-
-            inputStream.close();
-            result = sBuilder.toString();
-            System.out.print("teste");
-
-        } catch (Exception e) {
-            Log.e("StringBuilding & BufferedReader", "Error converting result " + e.toString());
-        }
+		
 		return null;
 	}
 	

@@ -50,12 +50,26 @@ public class EnviarDadosDaPartidaParaLogTask extends AsyncTask<DadosPartidaParaO
 		String pontuacao = String.valueOf(dadosPartidaGravar.getPontuacao());
 		
 		LinkedList<KanjiTreinar> palavrasAcertadas = dadosPartidaGravar.getPalavrasAcertadas();
-		String palavrasacertadas = 
-				this.transformarLinkedListKanjisEmString(palavrasAcertadas);
+		List<BasicDBObject> palavrasAcertadasPraMongo = new ArrayList<BasicDBObject>();
+		for(int y = 0; y < palavrasAcertadas.size(); y++)
+		{
+			KanjiTreinar umaPalavraAcertada = palavrasAcertadas.get(y);
+			BasicDBObject novoObjetoKanji = new BasicDBObject();
+			novoObjetoKanji.append("kanji", umaPalavraAcertada.getKanji());
+			novoObjetoKanji.append("categoria", umaPalavraAcertada.getCategoriaAssociada());
+			palavrasAcertadasPraMongo.add(novoObjetoKanji);
+		}
 		
 		LinkedList<KanjiTreinar> palavrasErradas = dadosPartidaGravar.getPalavrasErradas();
-		String palavraserradas = 
-				this.transformarLinkedListKanjisEmString(palavrasErradas);
+		List<BasicDBObject> palavrasErradasPraMongo = new ArrayList<BasicDBObject>();
+		for(int y = 0; y < palavrasErradas.size(); y++)
+		{
+			KanjiTreinar umaPalavraErrada = palavrasErradas.get(y);
+			BasicDBObject novoObjetoKanji = new BasicDBObject();
+			novoObjetoKanji.append("kanji", umaPalavraErrada.getKanji());
+			novoObjetoKanji.append("categoria", umaPalavraErrada.getCategoriaAssociada());
+			palavrasErradasPraMongo.add(novoObjetoKanji);
+		}
 		
 		LinkedList<KanjiTreinar> palavrasJogadas = dadosPartidaGravar.getPalavrasJogadas();
 		List<BasicDBObject> palavrasJogadasPraMongo = new ArrayList<BasicDBObject>();
@@ -77,13 +91,13 @@ public class EnviarDadosDaPartidaParaLogTask extends AsyncTask<DadosPartidaParaO
 				.append("data", data)
 				.append("categoria", categoriasPraMongo)
 				.append("pontuacao", pontuacao)
-				.append("palavrasacertadas", palavrasacertadas)
-				.append("palavraserradas", palavraserradas)
+				.append("palavrasacertadas", palavrasAcertadasPraMongo)
+				.append("palavraserradas", palavrasErradasPraMongo)
 				.append("palavrasjogadas", palavrasJogadasPraMongo)
 				.append("jogoassociado", jogoassociado)
 				.append("emailadversario", emailadversario)
 				.append("voceganhououperdeu", voceganhououperdeu);
-			MongoClient mongoClient = new MongoClient( "192.168.0.105" , 27017 );//IP MUDA
+			MongoClient mongoClient = new MongoClient( "10.5.29.51" , 27017 );//IP MUDA
 			DB db = mongoClient.getDB( "pairg_sumosensei_app" );
 			DBCollection colecaoPartidas = db.getCollection("partidas");
 			colecaoPartidas.insert(documentoNovo);

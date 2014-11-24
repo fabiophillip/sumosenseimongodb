@@ -428,8 +428,15 @@ public void entrarNaSala(SalaAbertaModoCasual salaVaiEntrar)
 {
 	 salaAtual = salaVaiEntrar;
 	 DesativarSalaEscolhidaDoBdTask taskDesativaSala = new DesativarSalaEscolhidaDoBdTask();
-	 String idSala = String.valueOf(salaAtual.getIdDaSala());
-	 taskDesativaSala.execute(idSala);
+	 //String idSala = String.valueOf(salaAtual.getIdDaSala());
+	 String emailQuemCriouSala = salaVaiEntrar.getNomeDeUsuario();
+	 taskDesativaSala.execute(emailQuemCriouSala);
+	 int idDaSala = salaAtual.getIdDaSala();
+	 if(idDaSala < 0)
+	 {
+		 idDaSala = -idDaSala;
+	 }
+	 salaAtual.setIdDaSala(idDaSala);
 	 startQuickGame(salaAtual.getIdDaSala());
 }
 
@@ -1201,8 +1208,9 @@ mSecondsLeft = 0;
 if(salaAtual != null)
 {
 	DesativarSalaEscolhidaDoBdTask taskDesativaSala = new DesativarSalaEscolhidaDoBdTask();
-	String idSala = String.valueOf(salaAtual.getIdDaSala());
-	taskDesativaSala.execute(idSala);
+	//String idSala = String.valueOf(salaAtual.getIdDaSala());
+	String emailQuemCriouSala = salaAtual.getNomeDeUsuario();
+	taskDesativaSala.execute(emailQuemCriouSala);
 }
 
 stopKeepingScreenOn();

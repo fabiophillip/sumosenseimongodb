@@ -62,7 +62,7 @@ public class SolicitaKanjisParaTreinoTask extends AsyncTask<String, String, Void
 		// or
 		MongoClient mongoClient;
 		try {
-			mongoClient = new MongoClient( "10.5.20.164" , 27017 );//IP MUDA
+			mongoClient = new MongoClient( "10.5.29.51" , 27017 );//IP MUDA
 			DB db = mongoClient.getDB( "pairg_sumosensei_app" );
 			this.colecaoJlpt = db.getCollection("jlpt");
 			 DBCursor cursorPercorreDocsJlpt = colecaoJlpt.find();

@@ -56,7 +56,7 @@ public class PegarDadosUltimasPartidasTask extends AsyncTask<String, String, Voi
 		// or
 		MongoClient mongoClient;
 		try {
-			mongoClient = new MongoClient( "192.168.0.105" , 27017 );//IP MUDA
+			mongoClient = new MongoClient( "10.5.29.51" , 27017 );//IP MUDA
 			DB db = mongoClient.getDB( "pairg_sumosensei_app" );
 			this.colecaoPartidas = db.getCollection("partidas");
 			BasicDBObject query = new BasicDBObject("email", emailJogador);
@@ -70,8 +70,8 @@ public class PegarDadosUltimasPartidasTask extends AsyncTask<String, String, Voi
 					BasicDBList categoria = (BasicDBList) umObjetoDaColecaoJlpt.get("categoria");
 					String data = (String) umObjetoDaColecaoJlpt.get("data");
 					String pontuacao = (String) umObjetoDaColecaoJlpt.get("pontuacao");
-	            	String palavrasAcertadasString = (String)umObjetoDaColecaoJlpt.get("palavrasacertadas");
-	            	String palavrasErradasString = (String)umObjetoDaColecaoJlpt.get("palavraserradas");
+					BasicDBList palavrasAcertadasArray = (BasicDBList) umObjetoDaColecaoJlpt.get("palavrasacertadas");
+	            	BasicDBList palavrasErradasArray = (BasicDBList) umObjetoDaColecaoJlpt.get("palavraserradas");
 	            	BasicDBList palavrasJogadasArray = (BasicDBList) umObjetoDaColecaoJlpt.get("palavrasjogadas");
 	            	String jogoAssociado = (String) umObjetoDaColecaoJlpt.get("jogoassociado"); //se eh o karuta kanji ou sumo sensei
 	            	String eMailAdversario = (String)umObjetoDaColecaoJlpt.get("emailadversario");
@@ -89,8 +89,8 @@ public class PegarDadosUltimasPartidasTask extends AsyncTask<String, String, Voi
 	            	dadosLog.setPontuacao(pontuacaoInteiro);
 	            	dadosLog.setVoceGanhouOuPerdeu(voceGanhouOuPerdeu);
 	            	
-	            	LinkedList<KanjiTreinar> palavrasAcertadas = extrairKanjisTreinar(palavrasAcertadasString);
-	            	LinkedList<KanjiTreinar> palavrasErradas = extrairKanjisTreinar(palavrasErradasString);
+	            	LinkedList<KanjiTreinar> palavrasAcertadas = extrairKanjisTreinarArray(palavrasAcertadasArray);
+	            	LinkedList<KanjiTreinar> palavrasErradas = extrairKanjisTreinarArray(palavrasErradasArray);
 	            	LinkedList<KanjiTreinar> palavrasJogadas = extrairKanjisTreinarArray(palavrasJogadasArray);
 	            	dadosLog.setPalavrasAcertadas(palavrasAcertadas);
 	            	dadosLog.setPalavrasErradas(palavrasErradas);
